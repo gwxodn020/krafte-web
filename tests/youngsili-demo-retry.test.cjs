@@ -8,7 +8,7 @@ function setup(){
  const element=(extra={})=>Object.assign({hidden:false,handlers:{},addEventListener(type,fn){this.handlers[type]=fn;},focus(){this.focused=true;}},extra);
  const scenario=element({value:'care'}),button=element({textContent:'3분 체험 전화 받기'});
  const form=element({querySelector:q=>q.includes('scenario')?scenario:button});
- const elements={heroCallForm:form,heroCallName:element({value:'테스트'}),heroCallPhone:element({value:'010-0000-0000'}),heroCallConsent:element({checked:true}),heroCallError:element({hidden:true}),heroCallSuccess:element({hidden:true}),heroCallSuccessMessage:element(),heroCallRetry:element({hidden:true})};
+ const elements={heroCallForm:form,heroCallName:element({value:'테스트'}),heroCallPhone:element({value:'010-0000-0000'}),heroCallConsent:element({checked:true}),heroCallRecordingConsent:element({checked:false}),heroCallError:element({hidden:true}),heroCallSuccess:element({hidden:true}),heroCallSuccessMessage:element(),heroCallRetry:element({hidden:true})};
  const requests=[];
  vm.runInNewContext(script,{document:{getElementById:id=>elements[id]},fetch(url,options){return new Promise(resolve=>requests.push({payload:JSON.parse(options.body),resolve}));}});
  return {elements,form,scenario,button,requests,submit:()=>form.handlers.submit({preventDefault(){}}),retry:()=>elements.heroCallRetry.handlers.click()};
@@ -18,7 +18,7 @@ async function respond(r,body,ok=true){r.requests.at(-1).resolve({ok,json:()=>Pr
 test('일상 안부 성공 후 날씨 안전과 건강 확인을 순서대로 재신청한다',async()=>{
  const r=setup();
  for(const scenario of ['care','weather','risk']){
-  r.scenario.value=scenario;r.elements.heroCallConsent.checked=true;r.submit();
+  r.scenario.value=scenario;r.elements.heroCallConsent.checked=true;r.elements.heroCallRecordingConsent.checked=true;r.submit();
   assert.equal(r.requests.at(-1).payload.scenario,scenario);
   await respond(r,{accepted:true,called:true});
   assert.equal(r.form.hidden,true);assert.equal(r.elements.heroCallSuccess.hidden,false);
@@ -29,7 +29,7 @@ test('일상 안부 성공 후 날씨 안전과 건강 확인을 순서대로 �
   assert.equal(r.form.hidden,false);assert.equal(r.elements.heroCallSuccess.hidden,true);
   assert.equal(r.elements.heroCallRetry.hidden,true);assert.equal(r.scenario.focused,true);
   assert.equal(r.elements.heroCallName.value,'테스트');assert.equal(r.elements.heroCallPhone.value,'010-0000-0000');
-  assert.equal(r.elements.heroCallConsent.checked,false);
+  assert.equal(r.elements.heroCallConsent.checked,false);assert.equal(r.elements.heroCallRecordingConsent.checked,false);
   r.submit();assert.equal(r.requests.length,count);assert.equal(r.elements.heroCallError.hidden,false);
  }
  assert.equal(r.requests.length,3);
