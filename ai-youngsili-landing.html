@@ -40,6 +40,12 @@
       "url": "https://www.krafte.net/",
       "email": "kraft@krafte.net",
       "telephone": "1877-1979",
+      "logo": "https://www.krafte.net/icon-512.png",
+      "sameAs": [
+        "https://www.instagram.com/aiyoungsili/",
+        "https://www.threads.com/@ai_youngsili",
+        "https://www.youtube.com/@KRAFT_AI"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "동대구로 465 스케일업허브(DASH) 712호",
@@ -67,12 +73,22 @@
       "provider": { "@id": "https://www.krafte.net/#organization" },
       "areaServed": { "@type": "Country", "name": "대한민국" },
       "audience": { "@type": "Audience", "audienceType": "독거노인, 지자체, 복지기관, 보호자" },
-      "offers": {
-        "@type": "Offer",
-        "price": "13000",
-        "priceCurrency": "KRW",
-        "description": "월 정액형, 무제한 발신, 통화비 0원"
-      }
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "앱 설치 없는 정량제 라이트",
+          "price": "21000",
+          "priceCurrency": "KRW",
+          "description": "월 21,000원(부가세 별도), 포함 통화 25통"
+        },
+        {
+          "@type": "Offer",
+          "name": "앱 설치 버전 베이직",
+          "price": "11000",
+          "priceCurrency": "KRW",
+          "description": "1인 월 11,000원(부가세 포함)"
+        }
+      ]
     },
     {
       "@type": "FAQPage",
@@ -870,9 +886,9 @@ body{overflow-x:hidden}
       <p>한 명의 복지사가 모든 어르신께 매일 전화하기는 어렵습니다. 독거노인 AI 안부전화와 고독사 예방 AI 서비스 영실이가 전국 어디서나 빠짐없이 안부를 묻습니다.</p>
     </div>
     <div class="stats reveal">
-      <div class="stat"><div class="n" data-count="51217221">0</div><div class="l">대한민국 전체 인구</div></div>
-      <div class="stat"><div class="n" data-count="10244550">0</div><div class="l">65세 이상 노인</div></div>
-      <div class="stat warn"><div class="n" id="statDokgeo" data-count="2132000">0</div><div class="l">전국 독거노인 (추정)</div></div>
+      <div class="stat"><div class="n" data-count="51217221">51,217,221명</div><div class="l">대한민국 전체 인구</div></div>
+      <div class="stat"><div class="n" data-count="10244550">10,244,550명</div><div class="l">65세 이상 노인</div></div>
+      <div class="stat warn"><div class="n" id="statDokgeo" data-count="2132000">2,132,000명</div><div class="l">전국 독거노인 (추정)</div></div>
       <div class="stat danger"><div class="n">20.0%</div><div class="l">고령화율 · 초고령사회</div></div>
     </div>
     <p style="text-align:center;color:var(--ink-3);font-size:.8rem;margin-top:16px;font-weight:600">출처: 행정안전부 주민등록인구 · 보건복지부 독거노인 현황</p>
